@@ -55,14 +55,12 @@ for(let i = 0; i < ilgis; i++) {
 console.log("reiksme: ", pinigine);
 
 console.log("7. Į 1 uždavinio masyvą pridėti tiek naujų reikšmių (pinigų, atsitiktinių skaičių nuo 0 iki 10), kad masyvo ilgis būtų lygiai 30");
-
 for (let i = ilgis; i < 30; i++) {
     pinigine[i] = Math.trunc(Math.random() * (30 - 10) + 10);
 }
 console.log("masyvo ilgis butu 30:", pinigine);
 
 console.log("8. Naudojant 1 uždavinio masyvą iš jo reikšmių sukurti dar du papildomus masyvus. Į vieną iš 1 uždavinio masyvo pridėti reikšmes mažesnes arba lygias 2 (monetas), o į kitą didesnes nei 2 (popierinius pinigus");
-
 let monetos = [];
 let popieriniaiPinigai = [];
 for (let i = 0; i < ilgis; i++) {
@@ -91,31 +89,29 @@ pinigine1[2].sort();
 console.log(pinigine1);
 
 console.log("12. Į kortelių skyrelį pridėti mokėjimo kortelių 'MasterCard', 'Visa' (su rand generuokite atsitiktines reikšmes 'MasterCard' arba 'Visa' ir rašykite į masyvą) iš skirtingų bankų tiek, kad skyrelis (masyvo ilgis) pasidarytų lygus 20");
-let = korteles = [];
-for (let i = korteles.length; i < 20; i++) {
-    if (Math.trunc(Math.random() * 2) < 1) {
-        korteles[i] = "MasterCard";
-    } else {
-        korteles[i] = "Visa";
+while(pinigine[2].length < 20) {
+        if(Math.random() < 0.5) {
+            pinigine[2].push('MasterCard')
+        } else {
+            pinigine[2].push('Visa')
+        };
     }
-}
-    console.log("masyvo ilgis lygus 20", korteles);
+    console.log(pinigine);
+
 
 console.log("13. Paskaičiuokite, kokio tipo kortelių ('MasterCard' arba 'Visa') yra daugiau");
-let Visa = 0;
-let Master = 0;
-for (let i = 0; i < korteles.length; i++) {
-    if (korteles[i] === "MasterCard") {
-        Master++;
-    }
-    if (korteles[i] === "Visa") {
-        Visa++;
-    }
+let master = 0;
+let visa = 0;
+for(i = 0; i < pinigine[2].length; i++) {
+    if(pinigine[2][i] === 'MasterCard') {
+        master++
+    } else if(pinigine[2][i] === 'Visa') {
+        visa++;
+    }   
 }
-console.log("Visos korteliu: ", Visa, "MasterCard korteliu: ", Master);
+console.log('MasterCard =', master, 'Visa =', visa);
 
 console.log("14. Sukurkite masyve (piniginėje) ketvirtą elementą (skyrelį) į kurį įdėkite 10 loterijos bilietų, kurių numerius sugeneruokite atsitiktinai su rand funkcija nuo 1000000000 iki 9999999999");
-
 let bilietai = [];
 for (let i = 0; i < 10; i++) {
     let reiksmes = Math.trunc(Math.random() * (9999999999 - 1000000000) + 1000000000);
@@ -124,32 +120,24 @@ for (let i = 0; i < 10; i++) {
 pinigine1.push(bilietai);
 console.log("keturi skyreliai: ", pinigine1);
 
-
 console.log("15. Loterijos bilietų masyvą išrūšiuoti nuo didžiausio numerio iki mažiausio");
-pinigine1[3].sort(function(a, b) {
+pinigine1[1].sort(function(a, b) {
     return b - a;
   });
-console.log(pinigine1[3]);
+console.log(pinigine1[1]);
 
-
-// // console.log("16. Į piniginės popierinių pinigų skyrelį įdėti 500 pinigų mažom kupiūrom ( generuoti atsitiktinius skaičius nuo 3 iki 10 ir dėti kaip naujus elementus, kol įdėta suma bus lygi 500)");
+console.log("16. Į piniginės popierinių pinigų skyrelį įdėti 500 pinigų mažom kupiūrom ( generuoti atsitiktinius skaičius nuo 3 iki 10 ir dėti kaip naujus elementus, kol įdėta suma bus lygi 500)");
 let popieriniuPiniguSuma = 0;
 let kupiura;
-let visosKupiuros = [];
+
 while (popieriniuPiniguSuma < 500) {
-    kupiura = Math.trunc(Math.random() * (10 - 3) + 3);
-    popieriniuPiniguSuma += kupiura;
-    visosKupiuros.push(kupiura);
-    if (popieriniuPiniguSuma === 500) {
-        console.log("popieriniu pinigų suma: ", popieriniuPiniguSuma);
-    } else if (popieriniuPiniguSuma > 500) {
-        popieriniuPiniguSuma = 0;
-        visosKupiuros = [];
+    kupiura = rand(3, 10)
+    pinigine1[2].push(kupiura)
+    popieriniuPiniguSuma += kupiura
     }
-}
-console.log("visos kupiuros, kuriu suma 500: ", visosKupiuros);
-
-
+    
+    console.log(pinigine1[2]);
+    console.log(popieriniuPiniguSuma);
 
 console.log("17. Patikrinti ar ką nors laimėjote. Bilieto numerius dalinkite iš 777 ir jeigu numeris išsidalins be liekanos - jūs laimėjote! Suskaičiuokite, kiek buvo laimingų bilietų.");
 let laimingiBilietai = [];
@@ -158,7 +146,6 @@ pinigine1[3].forEach(bilietas => {
     if (bilietas % 777 === 0) laimingiBilietai.push(bilietas);
 });
 console.log('Kiek laimingu: ', laimingiBilietai.length, ' Laimingi bilietai: ', laimingiBilietai);
-
 
 console.log("18. Sukurkite penktą skyrelį ir į jį sudėkite nuotraukas: ['šuo', 'katė', 'automobilis', 'namas', 'kiemas'] ir jas išrūšiuokite pagal žodžių ilgį taip, kad pirma eitų trumpiausi žodžiai");
 pinigine1.push(['šuo', 'katė', 'automobilis', 'namas', 'kiemas']);
